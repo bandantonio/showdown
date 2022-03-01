@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Build documentation
         id: build_docs
-        run: docker run --rm -it -v ${PWD}:/docs squidfunk/mkdocs-material build
+        run: docker run --rm -v ${PWD}:/docs squidfunk/mkdocs-material build
       
       - name: Deploy to GitHub Pages 
         if: steps.build_docs.outcome == 'success'
