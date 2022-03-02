@@ -9,6 +9,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Copy website artifacts
+        id: website
+        run: |
+          sudo apt update && sudo apt install -y rsync
+          mkdir public
+          rsync -v --progress ./website/. ./public
       - name: Build documentation
         id: build_docs
         run: docker run --rm -v ${PWD}:/docs squidfunk/mkdocs-material build

@@ -13,7 +13,7 @@ theme:
 
 repo_url: https://github.com/showdownjs/showdown
 repo_name: showdownjs/showdown
-site_dir: public
+site_dir: public/docs
 
 nav:
   - Home: index.md
