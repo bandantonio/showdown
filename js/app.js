@@ -124,7 +124,7 @@ $(document).ready(function() {
     })
     .on('/documentation', function (params) {
       changeActiveLink('documentation');
-      return loadPage('html/documentation.html', params);
+      return loadPage('docs/index.html', params);
     })
     .on('/blog/:canonical', function (params) {
       params.page = 'blog-article';
