@@ -11,9 +11,13 @@ theme:
     primary: red
     accent: cyan
 
+  features:
+    - navigation.tabs
+
 repo_url: https://github.com/showdownjs/showdown
 repo_name: showdownjs/showdown
 site_dir: public/docs
 
 nav:
   - Home: index.md
+  - Showdown website: /

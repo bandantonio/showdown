@@ -122,10 +122,10 @@ $(document).ready(function() {
       changeActiveLink('releases');
       return loadPage('html/releases.html', params);
     })
-    .on('/documentation', function (params) {
-      changeActiveLink('documentation');
-      return loadPage('docs/index.html', params);
-    })
+    // .on('/documentation', function (params) {
+    //   changeActiveLink('documentation');
+    //   return loadPage('docs/index.html');
+    // })
     .on('/blog/:canonical', function (params) {
       params.page = 'blog-article';
       changeActiveLink('blog');
