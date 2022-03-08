@@ -9,17 +9,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Copy website artifacts
+      - name: Trigger external build
         id: website
         run: |
-          mkdir public
-          cp -R ./website/* ./public
-      - name: Build documentation
-        id: build_docs
-        run: docker run --rm -v ${PWD}:/docs squidfunk/mkdocs-material build
-      
-      - name: Deploy to GitHub Pages 
-        if: steps.build_docs.outcome == 'success'
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          curl -X POST \
+          -u "${{ secrets.GIT_CREDENTIALS }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/bandantonio/showdownjs.github.io/dispatches \
+          --data '{"ref": "main" }'
