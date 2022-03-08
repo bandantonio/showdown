@@ -26,13 +26,13 @@ Your contributions are greatly appreciated and will help us with the development
 
 ## Who uses Showdown (or a fork)
 
+* [Antmarky](https://github.com/bandantonio/antmarky)
 * [GoogleCloudPlatform](https://github.com/GoogleCloudPlatform)
 * [Meteor](https://www.meteor.com/)
 * [StackExchange](http://stackexchange.com/) - forked as [PageDown](https://code.google.com/p/pagedown/)
 * [docular](https://github.com/Vertafore/docular)
 * [md-page](https://github.com/oscarmorrison/md-page)
 * [QCObjects](https://qcobjects.dev)
-* [Antmarky](https://github.com/bandantonio/antmarky)
 * [and some others](https://www.npmjs.com/browse/depended/showdown)
 
 ## License
