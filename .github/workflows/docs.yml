@@ -10,10 +10,15 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Trigger external build
-        id: website
+        env:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          event: build_docs
+          owner: bandantonio
+          repo: showdownjs.github.io
         run: |
           curl -X POST \
-          -u "${{ secrets.GIT_CREDENTIALS }}" \
+          -H "Authorization: token ${token}" \
           -H "Accept: application/vnd.github.v3+json" \
-          https://api.github.com/repos/bandantonio/showdownjs.github.io/dispatches \
-          --data '{"ref": "main" }'
+          -H "Content-Type: application/json" \
+          https://api.github.com/repos/${owner}/${repo}/dispatches \
+          -d '{ "event_type": "${event}", "client_payload": { "source": "showdown" } }'
