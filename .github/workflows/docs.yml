@@ -11,7 +11,7 @@ jobs:
 
       - name: Trigger external build
         env:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.SHOWDOWN_EXTERNAL_DOCS_BUILD }}
           event: build_docs
           owner: bandantonio
           repo: showdownjs.github.io
