@@ -12,7 +12,6 @@ jobs:
       - name: Trigger external build
         env:
           token: ${{ secrets.EXT_DOCS_BUILD }}
-          event: build_docs
           owner: bandantonio
           repo: showdownjs.github.io
         run: |
@@ -21,4 +20,4 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           -H "Content-Type: application/json" \
           https://api.github.com/repos/${owner}/${repo}/dispatches \
-          -d "{ 'event_type': ${event}, 'client_payload': { 'source': 'showdown' } }"
+          -d '{ "event_type": "build_docs", "client_payload": { "source": "showdown" } }'
