@@ -14,7 +14,7 @@ Showdown can be used on the client-side (in the browser) or server-side (with No
 
 ----
 
-Test demo deployment
+New event deployment
 
 ## Live demo
 
