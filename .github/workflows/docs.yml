@@ -1,25 +1,30 @@
 name: documentation
 
-on: [push]
+on:
+  push:
+    branches:    
+      - main
+    paths:
+      - 'mkdocs.yml'
+      - 'docs/**'
+      - '.github/workflows/docs.yml'
 
 jobs:
   build_docs:
     name: Build documentation
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Copy website artifacts
-        id: website
+      - name: Trigger external build
+        env:
+          TOKEN: ${{ secrets.DOCS_DEPLOY_KEY }}
+          EVENT: build_docs
+          OWNER: bandantonio
+          REPO: showdownjs.github.io
         run: |
-          mkdir public
-          cp -R ./website/* ./public
-      - name: Build documentation
-        id: build_docs
-        run: docker run --rm -v ${PWD}:/docs squidfunk/mkdocs-material build
-      
-      - name: Deploy to GitHub Pages 
-        if: steps.build_docs.outcome == 'success'
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          curl -X POST \
+          -H "Authorization: token ${TOKEN}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/${OWNER}/${REPO}/dispatches \
+          -d '{ "event_type": "'"${EVENT}"'", "client_payload": { "source": "showdown" } }'
